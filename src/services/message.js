@@ -5,6 +5,6 @@ exports.saveMessage = async (data) => {
 };
 
 
-exports.findMessagesByChatroomId = async (chatroomId) => {
-  return await Message.find({ chatroomId });
+exports.findMessagesByChatroomId = async (id) => {
+  return await Message.find({chatroom : id});
 };
