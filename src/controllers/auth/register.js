@@ -26,19 +26,19 @@ exports.RegisterUser = async (req, res) => {
     return;
   }
 
-  if (!req.files || Object.keys(req.files).length === 0) {
-    res.json({
-      type: errorResponse,
-      message: fileUploadError,
-    });
-    return;
-  }
+  // if (!req.files || Object.keys(req.files).length === 0) {
+  //   res.json({
+  //     type: errorResponse,
+  //     message: fileUploadError,
+  //   });
+  //   return;
+  // }
 
-  let profileImage = req.files.profileImage;
-  let path = `/images/userProfile/${profileImageName}`;
-  profileImage.mv("public" + path, (err) => {
-    console.log(err);
-  });
+  // let profileImage = req.files.profileImage;
+  // let path = `/images/userProfile/${profileImageName}`;
+  // profileImage.mv("public" + path, (err) => {
+  //   console.log(err);
+  // });
   try {
     await createUser({
       fullname,
@@ -46,7 +46,7 @@ exports.RegisterUser = async (req, res) => {
       email,
       phone,
       password,
-      profileImage: path,
+      // profileImage: path,
     });
     res.json({
       type: successResponse,

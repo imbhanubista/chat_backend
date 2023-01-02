@@ -1,6 +1,7 @@
 const {
   createChatRoom,
   findChatRoomByName,
+  findChatroomWithCustomCondition,
 } = require("../../services/chatroom");
 const {
   successResponse,
@@ -13,7 +14,7 @@ const {
 exports.createChatRoom = async (req, res) => {
   const { name, username, description } = req.body;
   // find chatroom by name and username
-  const chatRoom = await findChatRoomByName({ $or: [{ name }, { username }] });
+  const chatRoom = await findChatroomWithCustomCondition({ $or: [{ name }, { username }] });
   if (chatRoom) {
     res.json({
       type: errorResponse,
@@ -35,7 +36,7 @@ exports.createChatRoom = async (req, res) => {
   });
 
   try {
-    await createChatRoom({ name, profile: path, username, description });
+    await createChatRoom({ name, image: path, username, description });
     res.json({
       type: successResponse,
       message: chatRoomCreated,

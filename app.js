@@ -7,6 +7,10 @@ app.use(express.urlencoded({ extended: true }));
 const cors = require("cors");
 app.use(cors());
 
+const { saveMessage } = require("./src/services/message");
+const { findUser } = require("./src/services/userService");
+const { verifyJwtToken } = require("./src/utlis/jwt/jwt");
+
 // socket
 const { Server } = require("socket.io");
 const http = require("http");
@@ -80,9 +84,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-const { saveMessage } = require("./src/services/message");
-const { findUser } = require("./src/services/userService");
-const { verifyJwtToken } = require("./src/utlis/jwt/jwt");
+
 
 // to verify the token
 // io.use((socket, next) => {});
