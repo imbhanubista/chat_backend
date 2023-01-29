@@ -38,6 +38,8 @@ io.on("connection", (socket) => {
     console.log("left" + data);
   });
 
+
+
   socket.on("send_message", (data) => {
     console.log(data, "is here any data");
     // verify jwt token
@@ -49,8 +51,6 @@ io.on("connection", (socket) => {
       user: userDetail.data.verifiedToken.user_id,
       message: data.message,
     });
-    // find user ko detail using
-
     const userData = findUser({ _id: userDetail.data.verifiedToken.user_id });
     console.log(userData, "is here any userData");
 
